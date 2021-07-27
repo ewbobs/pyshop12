@@ -43,6 +43,7 @@ def update_product(request, id):
     return render(request, 'product/update_product.html',
                   {'product_form': product_form})
 
+
 def delete_product(request, id):
     product = get_object_or_404(Product, pk=id)
     if request.method == 'POST':
