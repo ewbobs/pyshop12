@@ -11,7 +11,16 @@
     <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <a href="{% url 'home' %}" class="navbar-brand">PyShop12</a>
-      <a href="{% url 'create-product' %}"><img STYLE="WIDTH: 20PX; HEIGHT:AUTO;" src = "{% static 'img/plus.png' %}"></a>
+<!--      Is Authenticated-->
+      {% if not request.user.is_authenticated%}
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Sign Up</a>
+      {% else %}
+      <h4>{{ request.user.username}}</h4>
+      <a href=" {% url 'logout' %}">Log out</a>
+      {% endif %}
+<!--      End is Authenticated-->
+    <a href="{% url 'create-product' %}"><img STYLE="WIDTH: 20PX; HEIGHT:AUTO;" src = "{% static 'img/plus.png' %}"></a>
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
